@@ -11,9 +11,9 @@ jobs:
       uses: actions/checkout@v2
     - uses: ./
     
-    - uses: ncipollo/release-action@v1.6.1
+    - uses: ncipollo/release-action@main
       with:
         allowUpdates: true
         tag: "packages"
-        artifacts: "./*/*.zst"
+        artifacts: "./*/*/*.zst, ./*/*/*.xz"
         token: ${{ secrets.GITHUB_TOKEN }}
