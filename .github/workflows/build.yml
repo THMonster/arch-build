@@ -10,7 +10,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - uses: ./
-    # - run: find ./
+    - run: timedatectl set-timezone Asia/Shanghai
     - uses: ncipollo/release-action@v1
       with:
         allowUpdates: true
