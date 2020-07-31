@@ -1,4 +1,5 @@
 FROM archlinux:latest
+RUN date
 RUN echo "[archlinuxcn]" >> /etc/pacman.conf
 RUN echo "SigLevel = TrustAll" >> /etc/pacman.conf
 RUN echo 'Server = https://mirrors.ocf.berkeley.edu/archlinuxcn/$arch' >> /etc/pacman.conf
