@@ -8,4 +8,4 @@ cat PKGBUILD| sed -E  '/sha256sums=/a thisisalabel'| sed -E '/thisisalabel/,+1d'
 mv PKGBUILD.new PKGBUILD
 cat myconfig >> config
 cat config
-makepkg -sf --noconfirm
+makepkg -sf --noconfirm --skippgpcheck
