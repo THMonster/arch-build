@@ -1,6 +1,7 @@
 FROM archlinux:latest
 RUN echo "[archlinuxcn]" >> /etc/pacman.conf
 RUN echo 'Server = https://mirrors.bfsu.edu.cn/archlinuxcn/$arch' >> /etc/pacman.conf
+RUN timedatectl set-timezone Asia/Shanghai
 RUN pacman -Syu base-devel git --noconfirm && sed -i '/E_ROOT/d' /usr/bin/makepkg
 RUN pacman -S archlinuxcn-keyring --noconfirm
 RUN pacman -S yay --noconfirm
