@@ -10,14 +10,10 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - uses: ./
-    # - uses: DuckSoft/build-aur-action@master
-      # with:
-        # repo-name: vapoursynth-editor
-    
-    - run: find ./
+    # - run: find ./
     - uses: ncipollo/release-action@v1
       with:
         allowUpdates: true
         tag: "packages"
-        artifacts: "./*/*/*.zst, ./*/*/*.xz"
+        artifacts: "./*/*/*.pkg.tar.zst, ./*/*/*.pkg.tar.xz"
         token: ${{ secrets.GITHUB_TOKEN }}
