@@ -1,0 +1,47 @@
+pkgname=fcitx5-table-hanma
+pkgver=r143.f47a45a
+pkgrel=1
+pkgdesc="table for fcitx5"
+arch=('any')
+license=('GPL')
+depends=('fcitx5-chinese-addons')
+makedepends=('extra-cmake-modules' 'boost' 'python-aiohttp' 'python-aiofiles' 'zip')
+source=(
+    "$pkgname::git+https://github.com/THMonster/projim.git"
+)
+md5sums=('SKIP')
+
+pkgver() {
+	cd "$pkgname"
+	echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+build() {
+    cd "$pkgname"
+
+    cd misc
+    rm mb_rime.txt
+    rm mb.txt
+    python gen_mb.py
+    cd ..
+
+    cd rime
+    cat header.txt > hanma.dict.yaml
+    cat ../misc/mb_rime.txt >> hanma.dict.yaml
+    cd ..
+
+    cd fcitx
+    cat header.txt > hanma.txt
+    cat ../misc/mb.txt >> hanma.txt
+    cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib .
+    make
+	zip hanma_f5a.zip hanma.main.dict hanma.conf
+}
+
+package() {
+    cd "$pkgname"
+    install -Dm644 ./rime/hanma.dict.yaml "${pkgdir}/usr/share/fcitx5-table-hanma/hanma.dict.yaml"
+    install -Dm644 ./fcitx/hanma_f5a.zip "${pkgdir}/usr/share/fcitx5-table-hanma/hanma_f5a.zip"
+    cd fcitx
+    make DESTDIR="$pkgdir" install
+}

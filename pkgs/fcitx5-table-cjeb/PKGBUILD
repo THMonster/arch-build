@@ -1,0 +1,30 @@
+pkgname=fcitx5-table-cjeb
+pkgver=r0.000
+pkgrel=1
+pkgdesc="纯净两笔 table for fcitx5"
+arch=('any')
+url="https://github.com/THMonster/fcitx-table-cjeb"
+license=('GPL')
+depends=('fcitx5-chinese-addons')
+makedepends=('extra-cmake-modules' 'boost')
+source=(
+    "$pkgname::git+https://github.com/THMonster/fcitx-table-cjeb.git"
+)
+md5sums=('SKIP')
+
+pkgver() {
+	cd "$pkgname"
+	echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "$pkgname"
+
+  cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib .
+  make
+}
+
+package() {
+  cd "$pkgname"
+  make DESTDIR="$pkgdir" install
+}
