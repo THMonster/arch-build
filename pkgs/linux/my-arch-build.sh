@@ -1,9 +1,9 @@
 #! /bin/sh
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR"
-yay -G linux
-mv ./linux/* ./
-rm ./linux -rf
+git clone https://git.archlinux.org/svntogit/packages.git --single-branch -b packages/linux
+mv ./packages/repos/core-x86_64/* ./
+rm ./packages -rf
 cat PKGBUILD| sed -E  '/sha256sums=/a thisisalabel'| sed -E '/thisisalabel/,+1d'|sed -E '/sha256sums=/a 'SKIP'' > PKGBUILD.new
 mv PKGBUILD.new PKGBUILD
 cat myconfig >> config
