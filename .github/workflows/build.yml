@@ -3,7 +3,7 @@ name: BUILD
 on:
   push:
   schedule:
-    - cron: '0 */6 * * *'
+    - cron: '0 */4 * * *'
 
 jobs:
   build:
@@ -17,5 +17,5 @@ jobs:
       with:
         allowUpdates: true
         tag: "packages"
-        artifacts: "./*/*/*.pkg.tar.zst, ./*/*/*.pkg.tar.xz"
+        artifacts: "./*/*/*.pkg.tar.zst"
         token: ${{ secrets.GITHUB_TOKEN }}
