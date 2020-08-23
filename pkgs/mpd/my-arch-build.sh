@@ -28,7 +28,7 @@ then
     git fetch https://github.com/MusicPlayerDaemon/MPD.git master:tmp
     git merge ${mpdver} --ff-only || exit 1
     cd ..
-    tar cvf mpd-`cat PKGBUILD | sed -nE 's/^pkgver=([0-9.a-zA-Z]+)/\1/p'`.tar.xz MPD
-    rm -rf MPD
+    mv MPD mpd-`cat PKGBUILD | sed -nE 's/^pkgver=([0-9.a-zA-Z]+)/\1/p'`
+    tar cvf mpd-`cat PKGBUILD | sed -nE 's/^pkgver=([0-9.a-zA-Z]+)/\1/p'`.tar.xz mpd-`cat PKGBUILD | sed -nE 's/^pkgver=([0-9.a-zA-Z]+)/\1/p'`
     makepkg -sf --noconfirm --skippgpcheck
 fi
