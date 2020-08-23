@@ -18,7 +18,7 @@ if [[ $oldpkgver == "" ]]
 then
     oldpkgver='a'
 fi
- 
+
 echo ${pkgver} ${oldpkgver}
 if [[ `vercmp ${pkgver} ${oldpkgver}` == 1  ]]
 then
