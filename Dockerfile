@@ -1,6 +1,8 @@
 FROM archlinux:latest
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN date
+RUN echo "[multilib]" >> /etc/pacman.conf
+RUN echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf
 RUN echo "[archlinuxcn]" >> /etc/pacman.conf
 RUN echo 'Server = https://mirrors.ocf.berkeley.edu/archlinuxcn/$arch' >> /etc/pacman.conf
 RUN pacman -Syu --noconfirm
