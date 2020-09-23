@@ -25,8 +25,8 @@ then
     mpdver=v`cat PKGBUILD | sed -nE 's/^pkgver=([0-9.a-zA-Z]+)/\1/p'`
     git clone https://github.com/IsoaSFlus/MPD.git
     cd MPD
-    git fetch https://github.com/MusicPlayerDaemon/MPD.git master:tmp
-    git merge ${mpdver} --ff-only || exit 1
+#    git fetch https://github.com/MusicPlayerDaemon/MPD.git master:tmp
+#    git merge ${mpdver} --ff-only || exit 1
     cd ..
     mv MPD mpd-`cat PKGBUILD | sed -nE 's/^pkgver=([0-9.a-zA-Z]+)/\1/p'`
     tar cvf mpd-`cat PKGBUILD | sed -nE 's/^pkgver=([0-9.a-zA-Z]+)/\1/p'`.tar.xz mpd-`cat PKGBUILD | sed -nE 's/^pkgver=([0-9.a-zA-Z]+)/\1/p'`
