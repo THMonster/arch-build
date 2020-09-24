@@ -7,6 +7,8 @@ mv ./packages/repos/extra-x86_64/* ./
 rm ./packages -rf
 cat PKGBUILD| sed -E  '/sha256sums=/a thisisalabel'| sed -E '/thisisalabel/,+1d'|sed -E '/sha256sums=/a 'SKIP'' > PKGBUILD.new
 cat PKGBUILD| sed -E  "s/sha256sums=\('[^']+'/sha256sums=('SKIP'/" > PKGBUILD.new
+cat PKGBUILD| sed -E  '/b2sums=/a thisisalabel'| sed -E '/thisisalabel/,+1d'|sed -E '/b2sums=/a 'SKIP'' > PKGBUILD.new
+cat PKGBUILD| sed -E  "s/b2sums=\('[^']+'/b2sums=('SKIP'/" > PKGBUILD.new
 mv PKGBUILD.new PKGBUILD
 
 pkgver="mpd"
