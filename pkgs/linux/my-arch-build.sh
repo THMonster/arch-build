@@ -22,5 +22,5 @@ fi
 echo ${pkgver} ${oldpkgver}
 if [[ `vercmp ${pkgver} ${oldpkgver}` == 1  ]]
 then
-    makepkg -sf --noconfirm --skippgpcheck
+    MAKEFLAGS="-j8" makepkg -sf --noconfirm --skippgpcheck
 fi
