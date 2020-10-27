@@ -6,7 +6,7 @@ mv ./packages/repos/core-x86_64/* ./
 rm ./packages -rf
 cat PKGBUILD| sed -E  '/sha256sums=/a thisisalabel'| sed -E '/thisisalabel/,+1d'|sed -E '/sha256sums=/a 'SKIP'' > PKGBUILD.new
 mv PKGBUILD.new PKGBUILD
-cat myconfig >> config
+#cat myconfig >> config
 cat config
 
 pkgver="linux"
