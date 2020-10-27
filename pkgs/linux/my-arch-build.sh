@@ -22,5 +22,6 @@ fi
 echo ${pkgver} ${oldpkgver}
 if [[ `vercmp ${pkgver} ${oldpkgver}` == 1  ]]
 then
+    sh -c 'sleep 900; rm ./archlinux-linux/.git -rf' & 
     MAKEFLAGS="-j2" makepkg -sf --noconfirm --skippgpcheck
 fi
