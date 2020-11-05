@@ -1,4 +1,4 @@
-pkgname=fcitx5-table-extra
+pkgname=fcitx5-table-cjeb
 pkgver=r0.000
 pkgrel=1
 arch=('any')
