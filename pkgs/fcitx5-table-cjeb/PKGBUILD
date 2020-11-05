@@ -1,0 +1,29 @@
+pkgname=fcitx5-table-extra
+pkgver=r0.000
+pkgrel=1
+arch=('any')
+url="https://github.com/IsoaSFlus/fcitx-table-cjeb"
+license=('GPL')
+depends=('fcitx5-chinese-addons')
+makedepends=('extra-cmake-modules' 'boost')
+source=(
+    "$pkgname::git+https://github.com/IsoaSFlus/fcitx-table-cjeb.git"
+)
+md5sums=('SKIP')
+
+pkgver() {
+	cd "$pkgname"
+	echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "$pkgname"
+
+  cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_INSTALL_LIBDIR=/usr/lib .
+  make
+}
+
+package() {
+  cd "$pkgname"
+  make DESTDIR="$pkgdir" install
+}
