@@ -1,6 +1,7 @@
 pkgname=fcitx5-table-cjeb
 pkgver=r0.000
 pkgrel=1
+pkgdesc="纯净两笔 table for fcitx5"
 arch=('any')
 url="https://github.com/IsoaSFlus/fcitx-table-cjeb"
 license=('GPL')
