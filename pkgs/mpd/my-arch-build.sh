@@ -17,7 +17,7 @@ then
 fi
 
 echo ${pkgver} ${oldpkgver}
-if [[ `vercmp ${pkgver} ${oldpkgver}` == 1  ]]
+if [[ `vercmp ${pkgver}-x86_64 ${oldpkgver}` == 1  ]]
 then
     mpdver=v`cat PKGBUILD | sed -nE 's/^pkgver=([0-9.a-zA-Z]+)/\1/p'`
     git clone https://github.com/IsoaSFlus/MPD.git
