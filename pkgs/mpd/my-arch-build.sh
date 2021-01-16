@@ -1,7 +1,7 @@
 #! /bin/sh
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR"
-yay -G mpd
+#yay -G mpd
 git clone https://git.archlinux.org/svntogit/packages.git --single-branch -b packages/mpd
 mv ./packages/repos/extra-x86_64/* ./
 rm ./packages -rf
