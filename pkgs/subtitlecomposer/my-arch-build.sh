@@ -23,6 +23,6 @@ fi
 echo ${pkgver} ${oldpkgver}
 if [[ `vercmp ${pkgver}-aaa ${oldpkgver}` == 1  ]]
 then
-    yay -S pocketsphinx --noconfirm
+    yay -S ${PKGNAME} --noconfirm
     makepkg -sf --noconfirm --skippgpcheck --skipchecksums
 fi
