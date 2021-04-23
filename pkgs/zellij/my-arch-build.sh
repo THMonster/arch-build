@@ -1,5 +1,5 @@
 #! /bin/sh
-PKGNAME="zellij"
+PKGNAME="zellij-git"
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR"
 
