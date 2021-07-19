@@ -11,13 +11,11 @@ provides=('qliveplayer')
 conflicts=('qliveplayer')
 depends=('mpv' 
          'ffmpeg'
-         'openssl'
-         'openssl-1.0'
          'qt5-base'
          'qt5-quickcontrols2'
          'qt5-graphicaleffects'
          'qt5-quickcontrols'
-         'python')
+         )
 makedepends=('cmake'
              'git'
              'rust'
@@ -40,17 +38,15 @@ sha256sums=(
 )
 
 build() {
-    pkg-config --libs openssl
-    cd $srcdir/QLivePlayer
-    cp $srcdir/QLivePlayer-Lib $srcdir/QLivePlayer/src/ -rf
-    mkdir -p build
-    cd build
-    cmake  -DCMAKE_BUILD_TYPE=Release ..
-    #cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib ..
-    make -j4 
+	git clone -b developing https://github.com/IsoaSFlus/QLivePlayer.git --recursive qqq
+	cd qqq
+	mkdir build
+	cd ./build
+	cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib ..
+	ninja
 }
 
 package() {
-    cd $srcdir/QLivePlayer/build
-    DESTDIR="$pkgdir" make install
+    cd $srcdir/qqq/build
+    DESTDIR="$pkgdir" ninja install
 }

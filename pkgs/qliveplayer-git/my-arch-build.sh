@@ -24,9 +24,4 @@ echo ${pkgver} ${oldpkgver}
 if [[ `vercmp ${pkgver}-aaa ${oldpkgver}` == 1  ]]
 then
     yes | makepkg -sf --skippgpcheck --skipchecksums
-    cd src/QLivePlayer
-    cd ./build
-    cmake -DCMAKE_BUILD_TYPE=Release ..
-    make clean
-    make -j3
 fi
