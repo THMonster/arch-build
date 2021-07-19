@@ -24,12 +24,9 @@ echo ${pkgver} ${oldpkgver}
 if [[ `vercmp ${pkgver}-aaa ${oldpkgver}` == 1  ]]
 then
     yes | makepkg -sf --skippgpcheck --skipchecksums
-    mkdir aaa
-    cd aaa
-    git clone https://github.com/IsoaSFlus/QLivePlayer.git --recursive
-    cd QLivePlayer
-    mkdir build
+    cd src/QLivePlayer
     cd ./build
     cmake -DCMAKE_BUILD_TYPE=Release ..
+    make clean
     make -j3
 fi
