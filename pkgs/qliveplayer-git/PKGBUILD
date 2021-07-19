@@ -12,6 +12,7 @@ conflicts=('qliveplayer')
 depends=('mpv' 
          'ffmpeg'
          'openssl'
+         'openssl-1.0'
          'qt5-base'
          'qt5-quickcontrols2'
          'qt5-graphicaleffects'
