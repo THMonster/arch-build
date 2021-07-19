@@ -24,6 +24,7 @@ makedepends=('cmake'
 
 source=(
     "QLivePlayer::git+https://github.com/IsoaSFlus/QLivePlayer.git#branch=v4"
+    "QLivePlayer-Lib::git+https://github.com/IsoaSFlus/QLivePlayer-Lib.git#branch=dev"
 )
 
 pkgver() {
@@ -35,7 +36,7 @@ sha256sums=('SKIP')
 
 build() {
     cd $srcdir/QLivePlayer
-    git submodule update --init --recursive
+    cp ../QLivePlayer-Lib ./src/QLivePlayer-Lib -rf
     mkdir -p build
     cd build
     cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib ..
