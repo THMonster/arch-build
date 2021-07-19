@@ -36,8 +36,8 @@ sha256sums=('SKIP')
 
 build() {
     cd $srcdir/QLivePlayer
-    cp $srcdir/QLivePlayer-Lib $srcdir/QLivePlayer/src/QLivePlayer-Lib -rf
-    ls $srcdir/QLivePlayer/src/QLivePlayer-Lib
+    cp $srcdir/QLivePlayer-Lib/* $srcdir/QLivePlayer/src/QLivePlayer-Lib/ -rf
+    ls -l $srcdir/QLivePlayer/src/QLivePlayer-Lib
     mkdir -p build
     cd build
     cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib ..
