@@ -21,4 +21,4 @@ then
 fi
 
 echo ${pkgver} ${oldpkgver}
-yes | makepkg -sf --skippgpcheck --skipchecksums
+makepkg -sf --noconfirm  --skippgpcheck --skipchecksums
