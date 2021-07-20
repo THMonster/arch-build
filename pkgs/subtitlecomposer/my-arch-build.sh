@@ -1,5 +1,5 @@
 #! /bin/sh
-PKGNAME="subtitlecomposer"
+PKGNAME="subtitlecomposer-git"
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR"
 
@@ -23,7 +23,6 @@ fi
 echo ${pkgver} ${oldpkgver}
 if [[ `vercmp ${pkgver}-aaa ${oldpkgver}` == 1  ]]
 then
-    chown packer ./ -R
-    sudo -u packer paru -U --noconfirm
+    paru -U --noconfirm
     #makepkg -sf --noconfirm --skippgpcheck --skipchecksums
 fi
