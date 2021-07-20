@@ -23,6 +23,6 @@ fi
 echo ${pkgver} ${oldpkgver}
 if [[ `vercmp ${pkgver}-aaa ${oldpkgver}` == 1  ]]
 then
-    paru -U --noconfirm
+    sudo -u packer paru -U --noconfirm
     #makepkg -sf --noconfirm --skippgpcheck --skipchecksums
 fi
