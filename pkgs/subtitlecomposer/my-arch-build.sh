@@ -23,7 +23,7 @@ fi
 echo ${pkgver} ${oldpkgver}
 if [[ `vercmp ${pkgver}-aaa ${oldpkgver}` == 1  ]]
 then
-    chown packer "${BASEDIR}" -R
+    chown packer ./ -R
     sudo -u packer paru -U --noconfirm
     #makepkg -sf --noconfirm --skippgpcheck --skipchecksums
 fi
