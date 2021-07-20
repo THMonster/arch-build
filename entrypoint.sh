@@ -2,4 +2,4 @@
 
 ls
 cd pkgs
-ls | xargs -i sh -c 'sh {}/my-arch-build.sh; mv {}/*.pkg.tar.zst ./; rm {} -rf'
+ls | xargs -i sudo -u nobody sh -c 'sh {}/my-arch-build.sh; mv {}/*.pkg.tar.zst ./; rm {} -rf'
