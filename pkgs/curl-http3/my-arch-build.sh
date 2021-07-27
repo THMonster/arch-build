@@ -23,5 +23,5 @@ fi
 echo ${pkgver} ${oldpkgver}
 if [[ `vercmp ${pkgver}-aaa ${oldpkgver}` == 1  ]]
 then
-    yes|paru -U --noconfirm --mflags "--skipchecksums --skippgpcheck"
+    yes|paru -U  --mflags "--skipchecksums --noconfirm --skippgpcheck"
 fi
