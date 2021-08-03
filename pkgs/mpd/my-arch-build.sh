@@ -2,9 +2,9 @@
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR"
 #yay -G mpd
-git clone https://git.archlinux.org/svntogit/packages.git --single-branch -b packages/mpd
-mv ./packages/repos/extra-x86_64/* ./
-rm ./packages -rf
+git clone https://github.com/archlinux/svntogit-packages.git --single-branch -b packages/mpd
+mv ./svntogit-packages/repos/extra-x86_64/* ./
+rm ./svntogit-packages -rf
 
 pkgver="mpd"
 pkgver=${pkgver}-`cat PKGBUILD | sed -nE 's/^pkgver=([0-9.a-zA-Z]+)/\1/p'`
