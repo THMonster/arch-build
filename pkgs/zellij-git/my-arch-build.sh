@@ -21,4 +21,5 @@ then
 fi
 
 echo ${pkgver} ${oldpkgver}
+yes | paru -Rnsc rust
 makepkg -sf --noconfirm  --skippgpcheck --skipchecksums
