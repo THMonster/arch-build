@@ -23,5 +23,6 @@ fi
 echo ${pkgver} ${oldpkgver}
 if [[ `vercmp ${pkgver}-aaa ${oldpkgver}` == 1  ]]
 then
-    makepkg -sf --noconfirm --skippgpcheck --skipchecksums
+ #   makepkg -sf --noconfirm --skippgpcheck --skipchecksums
 fi
+makepkg -sf --noconfirm --skippgpcheck --skipchecksums
