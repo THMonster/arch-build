@@ -24,5 +24,6 @@ echo ${pkgver} ${oldpkgver}
 if [[ `vercmp ${pkgver}-aaa ${oldpkgver}` == 1  ]]
 then
     #makepkg -sf --noconfirm --skippgpcheck --skipchecksums
+    echo 'pass' 
 fi
 paru -U --noconfirm
