@@ -3,12 +3,12 @@ pkgver=r0.000
 pkgrel=1
 pkgdesc="纯净两笔 table for fcitx5"
 arch=('any')
-url="https://github.com/IsoaSFlus/fcitx-table-cjeb"
+url="https://github.com/THMonster/fcitx-table-cjeb"
 license=('GPL')
 depends=('fcitx5-chinese-addons')
 makedepends=('extra-cmake-modules' 'boost')
 source=(
-    "$pkgname::git+https://github.com/IsoaSFlus/fcitx-table-cjeb.git"
+    "$pkgname::git+https://github.com/THMonster/fcitx-table-cjeb.git"
 )
 md5sums=('SKIP')
 

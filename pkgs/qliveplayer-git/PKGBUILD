@@ -5,7 +5,7 @@ pkgver=4.0.0.r6.g1017295
 pkgrel=1
 pkgdesc='Cute and useful Live Stream Player with danmaku support.'
 arch=('x86_64')
-url="https://github.com/IsoaSFlus/QLivePlayer"
+url="https://github.com/THMonster/QLivePlayer"
 license=('GPL2')
 provides=('qliveplayer')
 conflicts=('qliveplayer')
@@ -23,8 +23,8 @@ makedepends=('cmake'
              'extra-cmake-modules' )
 
 source=(
-    "QLivePlayer::git+https://github.com/IsoaSFlus/QLivePlayer.git#branch=developing"
-    "QLivePlayer-Lib::git+https://github.com/IsoaSFlus/QLivePlayer-Lib.git#branch=dev"
+    "QLivePlayer::git+https://github.com/THMonster/QLivePlayer.git#branch=developing"
+    "QLivePlayer-Lib::git+https://github.com/THMonster/QLivePlayer-Lib.git#branch=dev"
 )
 
 pkgver() {
@@ -38,7 +38,7 @@ sha256sums=(
 )
 
 build() {
-	git clone -b developing https://github.com/IsoaSFlus/QLivePlayer.git --recursive qqq
+	git clone -b developing https://github.com/THMonster/QLivePlayer.git --recursive qqq
 	cd qqq
 	mkdir build
 	cd ./build
