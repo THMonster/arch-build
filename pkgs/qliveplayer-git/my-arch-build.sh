@@ -20,8 +20,4 @@ then
     oldpkgver='a'
 fi
 
-echo ${pkgver} ${oldpkgver}
-if [[ `vercmp ${pkgver}-aaa ${oldpkgver}` == 1  ]]
-then
-    yes | makepkg -sf --skippgpcheck --skipchecksums
-fi
+yes | makepkg -sf --skippgpcheck --skipchecksums
