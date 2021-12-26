@@ -1,0 +1,42 @@
+pkgname=prelude-git
+pkgver=4.0.0.r6.g1017295
+pkgrel=1
+pkgdesc='Music.'
+arch=('x86_64')
+url="https://github.com/THMonster/Prelude"
+license=('GPL2')
+provides=('prelude')
+conflicts=('prelude')
+depends=('webkit2gtk' 
+         'mpd'
+         )
+makedepends=('cmake'
+             'git'
+             'rust'
+             'yarn' )
+
+source=(
+    "Prelude::git+https://github.com/THMonster/Prelude.git#branch=dev"
+)
+
+pkgver() {
+    cd Prelude 
+    git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+sha256sums=(
+    'SKIP'
+)
+
+build() {
+    cd $srcdir
+    yarn
+    yarn build
+    yarn tauri build || yes
+}
+
+package() {
+    cd $srcdir/src-tauri/target/release
+    strip -s prelude
+    install -Dm755 ./prelude "${pkgdir}/usr/bin/prelude"
+}
