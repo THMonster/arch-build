@@ -10,9 +10,9 @@ conflicts=('prelude')
 depends=('webkit2gtk' 
          'mpd'
          )
-makedepends=('cmake'
+makedepends=('rustup'
              'git'
-             'rust'
+             'cargo'
              'yarn' )
 
 source=(
@@ -29,14 +29,14 @@ sha256sums=(
 )
 
 build() {
-    cd $srcdir
+    cd Prelude 
     yarn
     yarn build
     yarn tauri build || yes
 }
 
 package() {
-    cd $srcdir/src-tauri/target/release
+    cd Prelude/src-tauri/target/release
     strip -s prelude
     install -Dm755 ./prelude "${pkgdir}/usr/bin/prelude"
 }
