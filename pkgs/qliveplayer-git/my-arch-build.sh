@@ -20,4 +20,4 @@ then
     oldpkgver='a'
 fi
 
-yes | makepkg -sf --skippgpcheck --skipchecksums
+#yes | makepkg -sf --skippgpcheck --skipchecksums

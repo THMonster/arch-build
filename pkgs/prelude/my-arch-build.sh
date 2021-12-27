@@ -20,5 +20,4 @@ then
     oldpkgver='a'
 fi
 
-yes | paru -Rnsc rust
 makepkg -sf --noconfirm --skippgpcheck --skipchecksums
