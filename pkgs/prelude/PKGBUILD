@@ -10,9 +10,8 @@ conflicts=('prelude')
 depends=('webkit2gtk' 
          'mpd'
          )
-makedepends=('rustup'
+makedepends=('rust'
              'git'
-             'cargo'
              'yarn' )
 
 source=(
