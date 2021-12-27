@@ -1,5 +1,5 @@
 pkgname=prelude-git
-pkgver=4.0.0.r6.g1017295
+pkgver=0.5.0.r0.g45eba81
 pkgrel=1
 pkgdesc='Music.'
 arch=('x86_64')
@@ -32,7 +32,7 @@ build() {
     cd Prelude 
     yarn
     yarn build
-    yarn tauri build || yes
+    yarn tauri build || ls
 }
 
 package() {

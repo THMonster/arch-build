@@ -20,4 +20,5 @@ then
     oldpkgver='a'
 fi
 
-yes | makepkg -sf --skippgpcheck --skipchecksums
+yes | paru -Rnsc rustup cargo
+makepkg -sf --noconfirm --skippgpcheck --skipchecksums
