@@ -1,25 +1,23 @@
 # Maintainer: Megumi_fox <i@megumifox.com>
 
 pkgname=qliveplayer-git
-pkgver=4.0.0.r6.g1017295
+pkgver=5.0.0.r6.g1017295
 pkgrel=1
 pkgdesc='Cute and useful Live Stream Player with danmaku support.'
 arch=('x86_64')
 url="https://github.com/THMonster/QLivePlayer"
 license=('GPL2')
-provides=('qliveplayer')
-conflicts=('qliveplayer')
+provides=('revda')
+conflicts=('revda')
 depends=('mpv' 
          'ffmpeg'
-         'qt5-base'
-         'qt5-quickcontrols2'
-         'qt5-graphicaleffects'
-         'qt5-quickcontrols'
+         'webkit2gtk'
          )
 makedepends=('cmake'
              'git'
              'rust'
              'ninja'
+             'yarn'
              'extra-cmake-modules' )
 
 source=(
@@ -38,7 +36,7 @@ sha256sums=(
 )
 
 build() {
-	git clone -b developing https://github.com/THMonster/QLivePlayer.git --recursive qqq
+	git clone -b tauri https://github.com/THMonster/QLivePlayer.git --recursive qqq
 	cd qqq
 	mkdir build
 	cd ./build
