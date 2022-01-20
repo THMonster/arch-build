@@ -40,11 +40,11 @@ build() {
 	cd qqq
 	mkdir build
 	cd ./build
-	cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib ..
-	ninja
+	cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib ..
+        make
 }
 
 package() {
     cd $srcdir/qqq/build
-    DESTDIR="$pkgdir" ninja install
+    make install
 }
