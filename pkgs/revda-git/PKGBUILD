@@ -1,6 +1,6 @@
 # Maintainer: Megumi_fox <i@megumifox.com>
 
-pkgname=qliveplayer-git
+pkgname=revda-git
 pkgver=5.0.0.r6.g1017295
 pkgrel=1
 pkgdesc='Cute and useful Live Stream Player with danmaku support.'
