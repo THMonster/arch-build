@@ -25,6 +25,7 @@ then
     oldpkgver='a'
 fi
 
+echo ${pkgver} ${oldpkgver}
 if [[ `echo ${oldpkgver} | grep ${pkgver}` == ""  ]]
 then
     makepkg -sf --noconfirm --skippgpcheck --skipchecksums
