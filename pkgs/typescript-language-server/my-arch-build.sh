@@ -1,5 +1,5 @@
 #! /bin/sh
-PKGNAME="example"
+PKGNAME="typescript-language-server"
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR"
 

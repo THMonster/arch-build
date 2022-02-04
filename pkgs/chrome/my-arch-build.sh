@@ -1,5 +1,5 @@
 #! /bin/sh
-PKGNAME="example"
+PKGNAME="google-chrome"
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR"
 
