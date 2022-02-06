@@ -3,8 +3,11 @@ PKGNAME="smartdns-china-list-git"
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR"
 
+mkdir ${PKGNAME}
+cd ${PKGNAME}
 paru -G ${PKGNAME}
-mv ./${PKGNAME}/* ./
+cd ..
+mv ./${PKGNAME}/*/* ./
 rm ./${PKGNAME} -rf
 
 #git clone https://git.archlinux.org/svntogit/packages.git --single-branch -b packages/${PKGNAME}
