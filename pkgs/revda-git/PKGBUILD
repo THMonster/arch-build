@@ -21,7 +21,7 @@ makedepends=('cmake'
              'extra-cmake-modules' )
 
 source=(
-    "QLivePlayer::git+https://github.com/THMonster/Revda.git#branch=developing"
+    "Revda::git+https://github.com/THMonster/Revda.git#branch=developing"
 )
 
 pkgver() {
