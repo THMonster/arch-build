@@ -18,6 +18,7 @@ makedepends=('cmake'
              'rust'
              'yarn'
              'extra-cmake-modules' )
+optdepends=('dmlive: play stream')
 
 source=(
     "Revda::git+https://github.com/THMonster/Revda.git#branch=developing"
