@@ -5,18 +5,17 @@ pkgver=5.0.0.r6.g1017295
 pkgrel=1
 pkgdesc='Cute and useful Live Stream Player with danmaku support.'
 arch=('x86_64')
-url="https://github.com/THMonster/QLivePlayer"
+url="https://github.com/THMonster/Revda"
 license=('GPL2')
 provides=('revda')
 conflicts=('revda')
-depends=('mpv' 
-         'ffmpeg'
+depends=(
          'webkit2gtk'
-         )
+         'dmlive'
+        )
 makedepends=('cmake'
              'git'
              'rust'
-             'ninja'
              'yarn'
              'extra-cmake-modules' )
 
@@ -30,19 +29,18 @@ pkgver() {
 }
 
 sha256sums=(
-            'SKIP'
+    'SKIP'
 )
 
 build() {
-	git clone -b developing https://github.com/THMonster/Revda.git --recursive qqq
-	cd qqq
+    cd Revda
 	mkdir build
 	cd ./build
-	cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib ..
-        make
+	cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib -DNODMLIVE=1 ..
+    make
 }
 
 package() {
-    cd $srcdir/qqq/build
-    make DESTDIR="$pkgdir" install
+    cd Revda/build
+    make DESTDIR="$pkgdir" install/fast
 }
