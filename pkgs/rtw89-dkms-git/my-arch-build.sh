@@ -3,9 +3,9 @@ PKGNAME="rtw89-dkms-git"
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR"
 
-paru -G ${PKGNAME}
-mv ./${PKGNAME}/* ./
-rm ./${PKGNAME} -rf
+# paru -G ${PKGNAME}
+# mv ./${PKGNAME}/* ./
+# rm ./${PKGNAME} -rf
 
 #git clone https://git.archlinux.org/svntogit/packages.git --single-branch -b packages/${PKGNAME}
 #mv ./packages/repos/extra-x86_64/* ./
