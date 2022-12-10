@@ -1,5 +1,5 @@
 #! /bin/sh
-PKGNAME="an-anime-game-launcher-bin"
+PKGNAME="an-anime-game-launcher-gtk-bin"
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR"
 
