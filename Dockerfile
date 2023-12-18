@@ -18,6 +18,7 @@ RUN useradd -m -p 123456 packer
 RUN pacman -Syu --noconfirm
 RUN pacman-key --init
 RUN pacman -Sy archlinux-keyring --noconfirm
+RUN pacman-key --lsign-key "farseerfc@archlinux.org"
 RUN pacman -S archlinuxcn-keyring --noconfirm
 RUN pacman -S base-devel git  --noconfirm && sed -i '/E_ROOT/d' /usr/bin/makepkg
 RUN pacman -S sudo yay jq paru --noconfirm
