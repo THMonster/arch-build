@@ -1,7 +1,7 @@
 # Maintainer: Megumi_fox <i@megumifox.com>
 
 pkgname=revda-git
-pkgver=5.3.0.r6.g1017295
+pkgver=5.4.0.r6.g1017295
 pkgrel=1
 pkgdesc='Cute and useful Live Stream Player with danmaku support.'
 arch=('x86_64')
@@ -15,6 +15,7 @@ depends=(
 makedepends=('cmake'
              'git'
              'rust'
+             'ninja'
              'yarn'
              'extra-cmake-modules' )
 optdepends=('dmlive: play stream')
@@ -36,8 +37,9 @@ build() {
     cd Revda
 	mkdir build
 	cd ./build
-	cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib -DNODMLIVE=1 ..
-    make
+	# cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib -DNODMLIVE=1 ..
+    cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release  ..
+    cmake --build .
 }
 
 package() {
