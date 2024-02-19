@@ -1,4 +1,4 @@
-FROM archlinux:latest
+FROM archlinux:base-devel
 
 # WORKAROUND for glibc 2.33 and old Docker
 # See https://github.com/actions/virtual-environments/issues/2658
@@ -20,7 +20,7 @@ RUN pacman-key --init
 RUN pacman -Sy archlinux-keyring --noconfirm
 RUN pacman-key --lsign-key "farseerfc@archlinux.org"
 RUN pacman -S archlinuxcn-keyring --noconfirm
-RUN pacman -S base-devel git  --noconfirm && sed -i '/E_ROOT/d' /usr/bin/makepkg
+RUN pacman -S base-devel git  --noconfirm
 RUN pacman -S sudo yay jq paru nushell --noconfirm
 RUN echo 'packer ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 COPY entrypoint.sh /entrypoint.sh
