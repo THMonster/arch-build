@@ -47,5 +47,5 @@ build() {
 
 package() {
     cd Revda/build
-    make DESTDIR="$pkgdir" install/fast
+    make DESTDIR="$pkgdir" install
 }
