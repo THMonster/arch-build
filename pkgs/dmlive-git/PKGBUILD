@@ -17,6 +17,8 @@ makedepends=('git'
 source=(
     "dmlive::git+https://github.com/THMonster/dmlive.git#branch=dev"
 )
+options=('!lto')
+         
 
 pkgver() {
     cd dmlive

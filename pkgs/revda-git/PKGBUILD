@@ -21,6 +21,7 @@ makedepends=('cmake'
              'yarn'
              'extra-cmake-modules' )
 optdepends=('dmlive: play stream')
+options=('!lto')
 
 source=(
     "Revda::git+https://github.com/THMonster/Revda.git#branch=developing"
@@ -40,7 +41,7 @@ build() {
 	mkdir build
 	cd ./build
 	# cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib -DNODMLIVE=1 ..
-    cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release  ..
+    cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DNODMLIVE=1 -DCMAKE_BUILD_TYPE=Release  ..
     cmake --build .
 }
 
