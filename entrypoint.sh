@@ -9,9 +9,9 @@ def main [] {
 		try { 
 			sudo -u packer sh $"($it.name)/my-arch-build.sh" 
         }
-		let pkg = (glob $"($it.name)/*.pkg.tar.zst")
 		let pkg_d = (glob $"*/($it.name)-debug*.pkg.tar.zst")
 		try { $pkg_d | get 0 | rm $in }
+		let pkg = (glob $"($it.name)/*.pkg.tar.zst")
 		try { $pkg | get 0 | mv $in ./ }
 		tree -L 2
 		try { rm $it.name -rf }
