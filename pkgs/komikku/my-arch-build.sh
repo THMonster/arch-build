@@ -30,5 +30,6 @@ echo ${pkgver} ${oldpkgver}
 if [[ `vercmp ${pkgver}-aaa ${oldpkgver}` == 1  ]]
 # if [[ `echo ${oldpkgver} | grep ${pkgver}` == ""  ]]
 then
-    makepkg -sf --noconfirm --skippgpcheck --skipchecksums
+    # makepkg -sf --noconfirm --skippgpcheck --skipchecksums
+	paru -B --skipreview --noconfirm .
 fi
