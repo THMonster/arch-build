@@ -62,7 +62,7 @@ makedepends=(
     wayland-protocols
 )
 _tag=2a9be6ece6da2fb8a79f900def325199046af994
-source=("git+https://github.com/ChimeraOS/gamescope.git#commit=${_tag}"
+source=("git+https://github.com/ChimeraOS/gamescope.git#commit=${_tag}")
 b2sums=('SKIP')
 
 provides=("$_pkgname")
