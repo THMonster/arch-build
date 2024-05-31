@@ -1,0 +1,26 @@
+pkgname=python-playwright_stealth
+_name=${pkgname#python-}
+pkgver=1.0.7
+pkgrel=1
+pkgdesc="playwright stealth"
+arch=('any')
+url=""
+license=('MIT')
+depends=('python' 'python-playwright')
+makedepends=('python-build' 'python-installer' 'python-setuptools' 'python-wheel')
+source=(
+    "$pkgname::git+https://github.com/paveldudka/playwright_stealth.git#branch=pasha/pkg_resource"
+)
+sha256sums=('SKIP')
+
+build() {
+  cd "$pkgname"
+  python -m build --wheel --no-isolation
+}
+
+package() {
+  cd "$pkgname"
+  python -m installer --destdir="$pkgdir" dist/*.whl
+
+  # install -Dm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
+}
