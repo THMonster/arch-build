@@ -49,6 +49,7 @@ depends=(
     xcb-util-wm
     xcb-util-errors
     xorg-server-xwayland
+    lcms2
 )
 makedepends=(
     benchmark
