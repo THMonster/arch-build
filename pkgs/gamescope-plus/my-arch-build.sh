@@ -3,10 +3,10 @@ PKGNAME="gamescope-plus"
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR"
 
-# paru -G ${PKGNAME}
-# mv ./${PKGNAME}/* ./
-# rm ./${PKGNAME} -rf
-#
+paru -G ${PKGNAME}
+mv ./${PKGNAME}/* ./
+rm ./${PKGNAME} -rf
+
 #git clone https://git.archlinux.org/svntogit/packages.git --single-branch -b packages/${PKGNAME}
 #mv ./packages/repos/extra-x86_64/* ./
 #rm ./packages -rf
@@ -30,5 +30,5 @@ echo ${pkgver} ${oldpkgver}
 if [[ `vercmp ${pkgver}-aaa ${oldpkgver}` == 1  ]]
 # if [[ `echo ${oldpkgver} | grep ${pkgver}` == ""  ]]
 then
-	# paru -B --skipreview --noconfirm .
+	paru -B --skipreview --noconfirm .
 fi
