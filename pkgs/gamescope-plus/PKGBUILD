@@ -55,6 +55,7 @@ depends=(
 )
 
 makedepends=(
+  cmake
   benchmark
   git
   glslang
