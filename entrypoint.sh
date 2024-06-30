@@ -4,7 +4,10 @@ def main [] {
     ls
     cd pkgs
     chown packer ./ -R
-    curl https://api.github.com/repos/THMonster/arch-build/releases -s | from json | get 0.assets | sort-by created_at | get name | save /tmp/packages.txt
+    try {
+        touch /tmp/packages.txt
+        curl https://api.github.com/repos/THMonster/arch-build/releases -s | from json | get 0.assets | sort-by created_at | get name | save -f /tmp/packages.txt
+    }
     # ls | xargs -i sudo -u packer sh -c 'sh {}/my-arch-build.sh; mv {}/*.pkg.tar.zst ./; rm {} -rf'
     ls | each { |it|
 		try {
