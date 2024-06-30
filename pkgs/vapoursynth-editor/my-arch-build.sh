@@ -14,7 +14,7 @@ rm ./${PKGNAME} -rf
 
 pkgver=${PKGNAME}-`cat PKGBUILD | sed -nE 's/^pkgver=.{0,1}([0-9.a-zA-Z_]+).{0,1}/\1/p'`
 pkgver=${pkgver}-`cat PKGBUILD | sed -nE 's/^pkgrel=([0-9]+)/\1/p'`
-oldpkgver=`curl https://api.github.com/repos/THMonster/arch-build/releases -s | jq '.[0].assets' | grep '"name"' | sed -nE 's/^.+"name": "([^"]+)",$/\1/p' | grep -e "${PKGNAME}-[0-9a-zA-Z]" | sed -n '$p'`
+oldpkgver=`cat /tmp/packages.txt | grep -e "${PKGNAME}-[0-9a-zA-Z]" | sed -n '$p'`
 
 # git clone -b <br> <url> upstream-git --depth=1
 # cd upstream-git
@@ -32,4 +32,3 @@ if [[ `vercmp ${pkgver}-aaa ${oldpkgver}` == 1  ]]
 then
     makepkg -sf --noconfirm --skippgpcheck --skipchecksums
 fi
-
