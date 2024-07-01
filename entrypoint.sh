@@ -10,6 +10,7 @@ def main [] {
     }
     cat /etc/makepkg.conf | str replace -m -r '(^OPTIONS=\([^)]*)debug([^)]*\))' '${1}!debug$2' | save -f /tmp/makepkg.conf
     mv /tmp/makepkg.conf /etc/makepkg.conf
+    cat /etc/makepkg.conf
     ls | each { |it|
 		try {
 			sudo -u packer sh $"($it.name)/my-arch-build.sh"
