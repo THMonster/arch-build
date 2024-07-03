@@ -41,6 +41,8 @@ depends=(
   libxres
   libxtst
   libxxf86vm
+  libavif
+  libdecor
   opengl-driver
   openvr
   sdl2
