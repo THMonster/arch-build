@@ -30,5 +30,6 @@ echo ${pkgver} ${oldpkgver}
 if [[ `vercmp ${pkgver}-aaa ${oldpkgver}` == 1  ]]
 # if [[ `echo ${oldpkgver} | grep ${pkgver}` == ""  ]]
 then
+	paru -S --noconfirm libdecor
 	paru -B --skipreview --noconfirm .
 fi
