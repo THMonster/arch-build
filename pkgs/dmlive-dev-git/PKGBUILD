@@ -1,4 +1,4 @@
-pkgname=dmlive-git
+pkgname=dmlive-dev-git
 pkgver=r6.g1017295
 pkgrel=1
 pkgdesc='Cute and useful Live Stream Player with danmaku support.'
