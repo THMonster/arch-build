@@ -12,8 +12,8 @@ RUN date
 RUN echo "[multilib]" >> /etc/pacman.conf
 RUN echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf
 RUN echo "[archlinuxcn]" >> /etc/pacman.conf
-#RUN echo 'Server = https://mirrors.ocf.berkeley.edu/archlinuxcn/$arch' >> /etc/pacman.conf
-RUN echo 'Server = https://repo.archlinuxcn.org/$arch' >> /etc/pacman.conf
+RUN echo 'Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch' >> /etc/pacman.conf
+# RUN echo 'Server = https://repo.archlinuxcn.org/$arch' >> /etc/pacman.conf
 RUN useradd -m -p 123456 packer
 RUN pacman -Syu --noconfirm
 RUN pacman-key --init
