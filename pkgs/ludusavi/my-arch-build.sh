@@ -1,5 +1,5 @@
 #! /bin/sh
-PKGNAME="freac"
+PKGNAME="ludusavi"
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR"
 
