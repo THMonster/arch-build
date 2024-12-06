@@ -9,15 +9,16 @@ depends=('plasma-workspace>=5.90')
 makedepends=('extra-cmake-modules' 'qt6-tools')
 # conflicts=('plasma5-applets-window-buttons')
 # install="${pkgname}.install"
-source=("git+https://github.com/taj-ny/kwin-gestures.git")
+source=("kwin-gestures::git+https://github.com/taj-ny/kwin-gestures.git")
 sha256sums=('SKIP')
 
 build() {
-  cd "${srcdir}"
+  cd kwin-gestures
   cmake -B build -S . -DCMAKE_INSTALL_PREFIX=/usr
   cmake --build build
 }
 
 package() {
+  cd kwin-gestures
   DESTDIR="${pkgdir}" cmake --install build
 }
