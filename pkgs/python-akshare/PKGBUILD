@@ -1,6 +1,6 @@
 pkgname=python-akshare
 pkgver=1.15.80
-pkgrel=1
+pkgrel=2
 pkgdesc="Financial data interface library"
 arch=('any')
 url='https://github.com/akfamily/akshare'
@@ -37,13 +37,12 @@ source=(
 )
 sha256sums=('SKIP')
 
-# prepare() {
-# 	cd "akshare-release-v$pkgver"
-# 	sed -i "/find_packages/s/()/(exclude=['tests'])/" setup.py
-# }
+prepare() {
+	cd "python-akshare"
+	sed -i "/find_packages/s/()/(exclude=['tests'])/" setup.py
+}
 
 build() {
-	cd "python-akshare"
 	python -m build --wheel --no-isolation
 	# make -C docs man
 }

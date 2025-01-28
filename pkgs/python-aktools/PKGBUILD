@@ -1,6 +1,6 @@
 pkgname=python-aktools
 pkgver=0.0.89
-pkgrel=1
+pkgrel=2
 pkgdesc="HTTP server library for AkShare"
 arch=('any')
 url='https://github.com/akfamily/aktools'
@@ -13,10 +13,10 @@ source=(
 )
 sha256sums=('SKIP')
 
-# prepare() {
-# 	cd "aktools-$pkgver"
-# 	sed -i "/packages=/s/()/(exclude=['tests'])/" setup.py
-# }
+prepare() {
+	cd "python-aktools"
+	sed -i "/packages=/s/()/(exclude=['tests'])/" setup.py
+}
 
 build() {
 	cd "python-aktools"
