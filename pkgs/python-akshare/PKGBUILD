@@ -1,6 +1,6 @@
 pkgname=python-akshare
 pkgver=1.15.80
-pkgrel=3
+pkgrel=4
 pkgdesc="Financial data interface library"
 arch=('any')
 url='https://github.com/akfamily/akshare'
@@ -18,7 +18,7 @@ depends=(
 	'python-tqdm'
 	'python-xlrd'
 	'python-openpyxl'
-	'python-jsonpath-ng'
+	'python-jsonpath-python'
 	'python-tabulate'
 	'python-decorator'
 	'python-pyminiracer')
