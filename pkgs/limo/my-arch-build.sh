@@ -1,5 +1,5 @@
 #! /bin/sh
-PKGNAME="example"
+PKGNAME="limo"
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR"
 
@@ -20,7 +20,6 @@ oldpkgver=`cat /tmp/packages.txt | grep -e "${PKGNAME}-[0-9a-zA-Z]" | sed -n '$p
 # cd upstream-git
 # pkgver=`git describe --always --dirty`
 # cd ..
-# rm upstream-git -rf
 
 if [[ "$oldpkgver" == "" ]]
 then
