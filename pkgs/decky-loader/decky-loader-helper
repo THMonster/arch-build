@@ -5,9 +5,10 @@
 DECKY_USER="$1"
 DECKY_USER_HOME=$(getent passwd $DECKY_USER | cut -d: -f6)
 
-DECKY_VAR_DATA="$DECKY_USER_HOME/.local/opt/decky-loader"
+DECKY_VAR_DATA="$DECKY_USER_HOME/.local/share/decky-loader"
 
 if [[ "$2" == "start" ]]; then
+	install -d -o $DECKY_USER "$DECKY_VAR_DATA"
 	install -d -o $DECKY_USER "$DECKY_VAR_DATA/services" "$DECKY_VAR_DATA/plugins"
 	install -Dm 755 "/usr/lib/decky-loader/PluginLoader" "$DECKY_VAR_DATA/services/PluginLoader"
 	STEAM_DEBUGGING_FILE="$DECKY_USER_HOME/.steam/steam/.cef-enable-remote-debugging"
