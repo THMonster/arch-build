@@ -1,5 +1,5 @@
 #! /bin/sh
-PKGNAME="citron"
+PKGNAME="eden"
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR"
 
