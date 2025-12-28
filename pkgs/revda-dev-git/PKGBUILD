@@ -35,6 +35,7 @@ pkgver() {
 
 sha256sums=(
     'SKIP'
+    'SKIP'
 )
 
 build() {
