@@ -39,7 +39,7 @@ sha256sums=(
 )
 
 build() {
-	mv dmlive Revda/dmlive
+	mv dmlive Revda/
     cd Revda
 	mkdir build
 	cd ./build
