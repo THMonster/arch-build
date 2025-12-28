@@ -18,7 +18,8 @@ oldpkgver=`cat /tmp/packages.txt | grep -e "${PKGNAME}-[0-9a-zA-Z]" | sed -n '$p
 
 git clone -b master https://github.com/PapirusDevelopmentTeam/papirus-icon-theme upstream-git --depth=1
 cd upstream-git
-pkgver=`git describe --always --dirty`
+pkgvera=`git describe --always --dirty`
+pkgver="${pkgvera%?}"
 cd ..
 rm upstream-git -rf
 
