@@ -25,6 +25,7 @@ options=('!lto')
 
 source=(
     "Revda::git+https://github.com/THMonster/Revda.git#branch=developing"
+    "dmlive::git+https://github.com/THMonster/dmlive.git#branch=dev"
 )
 
 pkgver() {
@@ -37,6 +38,7 @@ sha256sums=(
 )
 
 build() {
+	mv dmlive Revda/dmlive
     cd Revda
 	mkdir build
 	cd ./build
