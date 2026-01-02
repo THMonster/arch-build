@@ -6,7 +6,7 @@ arch=('x86_64')
 url="https://github.com/THMonster/dmlive"
 license=('GPL2')
 provides=('dmlive')
-conflicts=('dmlive' 'revda')
+conflicts=('dmlive')
 depends=('mpv' 
          'ffmpeg'
          )
