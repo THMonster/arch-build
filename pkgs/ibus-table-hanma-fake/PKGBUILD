@@ -1,0 +1,40 @@
+pkgname=ibus-table-hanma-fake
+pkgver=r143.f47a45a
+pkgrel=1
+pkgdesc="table for ibus but replaces cangjie5"
+arch=('any')
+license=('GPL')
+depends=('ibus-table' 'ibus')
+conflicts=('ibus-table-chinese')
+makedepends=('extra-cmake-modules' 'boost' 'python-aiohttp' 'python-aiofiles' 'zip')
+source=(
+    "$pkgname::git+https://github.com/THMonster/projim.git"
+)
+md5sums=('SKIP')
+
+pkgver() {
+	cd "$pkgname"
+	echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+build() {
+    cd "$pkgname"
+
+    cd misc
+    rm mb_rime.txt
+    rm mb.txt
+    python gen_mb.py
+    cd ..
+
+	cd ibus
+	cat header.txt > hanma_ibus.txt
+	cat ../misc/mb_ibus.txt >> hanma_ibus.txt
+	echo "END_TABLE" >> hanma_ibus.txt
+	ibus-table-createdb -s hanma_ibus.txt
+}
+
+package() {
+    cd "$pkgname"
+    install -Dm644 ./ibus/hanma_ibus.db "${pkgdir}/usr/share/ibus-table/tables/cangjie5.db"
+    install -Dm644 ./ibus/cangjie5.svg "${pkgdir}/usr/share/ibus-table/icons/cangjie5.svg"
+}

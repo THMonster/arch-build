@@ -1,0 +1,58 @@
+# Maintainer: Megumi_fox <i@megumifox.com>
+
+pkgname=revda-dev-git
+pkgver=5.4.0.r6.g1017295
+pkgrel=2
+pkgdesc='Cute and useful Live Stream Player with danmaku support.'
+arch=('x86_64')
+url="https://github.com/THMonster/Revda"
+license=('GPL2')
+provides=('revda')
+conflicts=('revda')
+depends=(
+         'webkit2gtk'
+        )
+makedepends=('cmake'
+             'git'
+             'rust'
+             'openssl'
+             'openssl-1.1'
+             'ninja'
+             'yarn'
+             'extra-cmake-modules' )
+# optdepends=('dmlive: play stream')
+options=('!lto')
+
+source=(
+    "Revda::git+https://github.com/THMonster/Revda.git#branch=developing"
+    "dmlive::git+https://github.com/THMonster/dmlive.git#branch=dev"
+)
+
+pkgver() {
+    cd Revda
+    git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+sha256sums=(
+    'SKIP'
+    'SKIP'
+)
+
+build() {
+	mv dmlive Revda/
+    cd Revda
+	mkdir build
+	cd ./build
+	cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_LIBDIR=lib -DNODMLIVE=1 ..
+    # cmake -GNinja -DCMAKE_INSTALL_PREFIX=/usr -DNODMLIVE=1 -DCMAKE_BUILD_TYPE=Release  ..
+    make
+}
+
+package() {
+	_deps+=("dmlive")
+	depends+=("${_deps[@]}")
+	# depends+=( 'dmlive' )
+
+    cd Revda/build
+    make DESTDIR="$pkgdir" install
+}

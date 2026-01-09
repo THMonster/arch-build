@@ -1,0 +1,27 @@
+# Maintainer: Sander Kolman <Sandarr95@users.noreply.github.com>
+pkgname=decky-loader
+pkgver=3.2.1
+pkgrel=1
+pkgdesc="Unofficial Arch build of Decky Loader, a homebrew plugin launcher for the Steam Deck."
+arch=('x86_64')
+url="https://github.com/SteamDeckHomebrew/decky-loader"
+license=('MIT')
+provides=('decky-loader')
+conflicts=('decky-loader')
+source=("PluginLoader::${url}/releases/download/v${pkgver}/PluginLoader"
+        "decky-loader@.service::${url}/raw/v${pkgver}/dist/plugin_loader-release.service"
+        "decky-loader-helper")
+sha256sums=('SKIP'
+            'SKIP'
+            'SKIP')
+
+build() {
+    sed -i "s|\${HOMEBREW_FOLDER}|/home/%i/.local/share/decky-loader|" "${srcdir}/decky-loader@.service"
+    # sed -i "/^ExecStart=/i ExecStartPre=/usr/bin/decky-loader-helper v${pkgver} %i" "${srcdir}/decky-loader@.service"
+}
+
+package() {
+    install -Dm 644 "${srcdir}/decky-loader@.service" "${pkgdir}/usr/lib/systemd/system/decky-loader@.service"
+    install -Dm 644 "${srcdir}/PluginLoader" "${pkgdir}/usr/lib/decky-loader/PluginLoader"
+    install -Dm 755 "${srcdir}/decky-loader-helper" "${pkgdir}/usr/bin/decky-loader-helper"
+}

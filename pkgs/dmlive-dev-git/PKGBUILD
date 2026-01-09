@@ -1,0 +1,41 @@
+pkgname=dmlive-dev-git
+pkgver=r6.g1017295
+pkgrel=1
+pkgdesc='Cute and useful Live Stream Player with danmaku support.'
+arch=('x86_64')
+url="https://github.com/THMonster/dmlive"
+license=('GPL2')
+provides=('dmlive')
+conflicts=('dmlive')
+depends=('mpv' 
+         'ffmpeg'
+         )
+makedepends=('git'
+             'rust'
+             )
+
+source=(
+    "dmlive::git+https://github.com/THMonster/dmlive.git#branch=dev"
+)
+options=('!lto')
+         
+
+pkgver() {
+    cd dmlive
+    # git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+	echo "r$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+sha256sums=(
+    'SKIP'
+)
+
+build() {
+    cd dmlive
+	cargo build --release
+}
+
+package() {
+    cd dmlive
+    install -Dm755 ./target/release/dmlive "${pkgdir}/usr/bin/dmlive"
+}

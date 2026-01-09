@@ -1,0 +1,27 @@
+name: BUILD
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 */6 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - run: |
+        wget -qO- https://apt.fury.io/nushell/gpg.key | sudo gpg --dearmor -o /etc/apt/keyrings/fury-nushell.gpg
+        echo "deb [signed-by=/etc/apt/keyrings/fury-nushell.gpg] https://apt.fury.io/nushell/ /" | sudo tee /etc/apt/sources.list.d/fury-nushell.list
+        sudo apt update
+        sudo apt install nushell
+        nu delete-old-packages.nu ${{ secrets.GITHUB_TOKEN }}
+    - uses: ./
+    - uses: ncipollo/release-action@v1
+      with:
+        allowUpdates: true
+        tag: "packages"
+        artifacts: "./*/*.pkg.tar.zst"
+        token: ${{ secrets.GITHUB_TOKEN }}

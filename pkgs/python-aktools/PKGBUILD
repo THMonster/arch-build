@@ -1,0 +1,31 @@
+pkgname=python-aktools
+pkgver=0.0.89
+pkgrel=2
+pkgdesc="HTTP server library for AkShare"
+arch=('any')
+url='https://github.com/akfamily/aktools'
+license=('MIT')
+depends=('python-fastapi' 'uvicorn' 'python-python-multipart' 'python-typer' 'python-jinja')
+makedepends=('python-setuptools' 'python-build' 'python-installer' 'python-wheel')
+# makedepends=('python-setuptools' 'python-build')
+source=(
+    "python-aktools::git+https://github.com/akfamily/aktools.git"
+)
+sha256sums=('SKIP')
+
+prepare() {
+	cd "python-aktools"
+	sed -i "/packages=/s/()/(exclude=['tests'])/" setup.py
+}
+
+build() {
+	cd "python-aktools"
+	python -m build --wheel --no-isolation
+}
+
+package() {
+	export PYTHONHASHSEED=0
+	cd "python-aktools"
+	python -m installer --destdir="$pkgdir/" dist/*.whl
+	install -Dm644 LICENSE -t "$pkgdir/usr/share/licenses/$pkgname/"
+}
