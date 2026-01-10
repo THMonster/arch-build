@@ -6,8 +6,8 @@ source '../../scripts/misc.nu'
 const BASEDIR = path self | path dirname
 cd $BASEDIR
 
-let PKGNAME = 'vicinae'
-let OWN_PKGS = [ 'vicinae' ]
+let PKGNAME = 'kwin-effects-better-blur-dx-git'
+let OWN_PKGS = [ 'kwin-effects-better-blur-dx-git' ]
 
 def main [plist: string, print_pkgs: bool] {
 	if $print_pkgs == true {
@@ -17,8 +17,8 @@ def main [plist: string, print_pkgs: bool] {
 
 	download_pkgbuild $PKGNAME
 
-	let has_update = check_verion $PKGNAME $plist
-	# let has_update = check_verion_git '<url>' '<br>' $PKGNAME $plist
+	# let has_update = check_verion $PKGNAME $plist
+	let has_update = check_verion_git 'https://github.com/xarblu/kwin-effects-better-blur-dx' 'main' $PKGNAME $plist
 	if $has_update {
 		# makepkg -sf --noconfirm --skippgpcheck --skipchecksums
 		paru -B --skipreview --noconfirm .
