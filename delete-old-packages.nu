@@ -1,13 +1,13 @@
 #!/usr/bin/env nu
 
 def delete_assets [token:string, id: string] {
-	print ("delete asset id: " + $id)
+	"delete asset id: " + $id | print
 	let resp = (curl -L -X DELETE
 	 	-H "Accept: application/vnd.github+json"
 		-H $"Authorization: Bearer ($token)"
 		-H "X-GitHub-Api-Version: 2022-11-28"
 		("https://api.github.com/repos/THMonster/arch-build/releases/assets/" + $id))
-	print $resp
+	$resp | print
 }
 
 def main [token: string] {
@@ -24,22 +24,30 @@ def main [token: string] {
 		[]
 	}
 
-	let packages_out = $package_list | each { |p| 
+	mut to_delete = []
+	mut abandoned = $packages
+	for $p in $package_list {
 		let re1 = $p + r#'-[^-]+-[0-9]+-(any|x86_64).pkg.tar.zst'#
 		let pl = $packages | where name =~ $re1 | sort-by created_at
-		mut to_delete = []
+		$abandoned = $abandoned | where name !~ $re1
 		if ($pl | length) > 2 {
 			$to_delete = $to_delete | append $pl.0 
 		}
-		{ $p: [$pl $to_delete] }
-	} | into record 
+	}
 
-	print ($packages_out | to json)
-	let _ =	$packages_out | items { |k, v| 
-		let id = ($v.1 | get -o id.0)
-		if ($id | is-not-empty) {
-			delete_assets $token ($id | into string)
+	'============================all packages==============================' | print
+	$packages | print
+	'==================================to delete==============================' | print
+	$to_delete | print
+	'=============================orphan packages==============================' | print
+	$abandoned | print
+	let _ =	$to_delete | each { |x| 
+		delete_assets $token ($x.id | into string)
+	}
+
+	let _ =	$abandoned | each { |x| 
+		if (((date now) - ($x.created_at | into datetime)) > 3day) {
+			delete_assets $token ($x.id | into string)
 		}
 	}
-	
 }
