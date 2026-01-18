@@ -1,5 +1,7 @@
 #!/usr/bin/env nu
 
+let expected_packages = [ 'gamescope-session-git' ]
+
 def main [] {
     ls
     cd pkgs
@@ -18,12 +20,14 @@ def main [] {
     open /etc/makepkg.conf | print
 	let _ = ls | each { |it|
 		print ('===========================================building: ' + $it.name + '==================================================')
-		let pkgout = try {
-			let build_script = $it.name + "/build.nu"
+		let build_script = $it.name + "/build.nu"
+		let pkgout = nu $build_script 'aaa' true | from json
+		try {
 			sudo -u packer nu $build_script $resp false
-			nu $build_script 'aaa' true | from json
 		} catch {
-			[]
+			if $pkgout.0 in $expected_packages {
+				error make {msg: "This package should not be failed"}
+			}
 		}
 
 		let _ = $pkgout | each { |p|
