@@ -15,7 +15,7 @@ def main [plist: string, print_pkgs: bool] {
 	}
 	let plist = $plist | from json
 
-	download_pkgbuild $PKGNAME
+	# download_pkgbuild $PKGNAME
 
 	# let has_update = check_verion $PKGNAME $plist
 	let has_update = check_verion_git 'https://github.com/PapirusDevelopmentTeam/papirus-icon-theme' 'master' $PKGNAME $plist

@@ -1,6 +1,6 @@
 #!/usr/bin/env nu
 
-let expected_packages = [ 'gamescope-session-git' ]
+let expected_packages = [ 'gamescope-session-git' 'papirus-icon-theme-git' ]
 
 def main [] {
     ls
