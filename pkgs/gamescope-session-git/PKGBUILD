@@ -25,6 +25,8 @@ pkgver() {
 
 build() {
 	cd "$srcdir/${_gitdir}"
+	git config user.email "a@a.com"
+	git config user.name "aaa"
 	git fetch https://github.com/THMonster/gamescope-session.git dev:thmonster
 	git merge thmonster
 }

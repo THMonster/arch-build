@@ -6,6 +6,8 @@ def main [] {
     ls
     cd pkgs
     chown packer ./ -R
+	sudo -u packer git config --global user.email "a@a.com"
+	sudo -u packer git config --global user.name "aaa"
 
 	let resp = try {
 		let resp = curl https://api.github.com/repos/THMonster/arch-build/releases/tags/packages -s | from json

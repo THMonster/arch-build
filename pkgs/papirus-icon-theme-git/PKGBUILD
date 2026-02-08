@@ -35,6 +35,8 @@ pkgver() {
 
 build() {
 	cd "${pkgname%-git}"
+	git config user.email "a@a.com"
+	git config user.name "aaa"
 	git fetch https://github.com/THMonster/papirus-icon-theme.git dev:thmonster
 	git merge thmonster
 }
