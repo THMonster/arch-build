@@ -21,7 +21,10 @@ RUN pacman -Sy archlinux-keyring --noconfirm
 RUN pacman-key --lsign-key "farseerfc@archlinux.org"
 RUN pacman -S archlinuxcn-keyring --noconfirm
 RUN pacman -S base-devel git  --noconfirm
-RUN pacman -S sudo yay jq paru nushell tree --noconfirm
+RUN pacman -S sudo wget jq paru nushell tree --noconfirm
+RUN wget 'https://github.com/nushell/nushell/releases/download/0.112.2/nu-0.112.2-x86_64-unknown-linux-musl.tar.gz'
+RUN tar xvf nu-0.112.2-x86_64-unknown-linux-musl.tar.gz
+RUN mv ./nu-0.112.2-x86_64-unknown-linux-musl/nu /usr/bin/nu
 RUN echo 'packer ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
 COPY entrypoint.nu /entrypoint.nu
 ENTRYPOINT ["/entrypoint.nu"]

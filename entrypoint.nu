@@ -17,6 +17,8 @@ def main [] {
 	} 
 	let resp = $resp | to json 
 
+    print $resp
+
 	open /etc/makepkg.conf | str replace -m -r '(^OPTIONS=\([^)]*)debug([^)]*\))' '${1}!debug$2' | save -f /tmp/makepkg.conf
     mv /tmp/makepkg.conf /etc/makepkg.conf
     open /etc/makepkg.conf | print

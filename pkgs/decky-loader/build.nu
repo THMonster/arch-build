@@ -9,11 +9,11 @@ cd $BASEDIR
 let PKGNAME = 'decky-loader'
 let OWN_PKGS = [ 'decky-loader' ]
 
-def main [plist: string, print_pkgs: bool] {
+def main [pl: string, print_pkgs: bool] {
 	if $print_pkgs == true {
 		return ($OWN_PKGS | to json)
 	}
-	let plist = $plist | from json
+	let plist = $pl | from json
 
 	# download_pkgbuild $PKGNAME
 

@@ -3,7 +3,7 @@
 
 pkgname=niri-thmonster
 pkgver=25.11
-pkgrel=13
+pkgrel=14
 pkgdesc="A scrollable-tiling Wayland compositor"
 arch=(x86_64)
 url="https://github.com/YaLTeR/niri"
@@ -44,7 +44,7 @@ optdepends=(
 )
 provides=(niri)
 conflicts=(niri-bin niri-git niri)
-source=("$pkgname-$pkgver::git+https://github.com/THMonster/niri.git#branch=blur")
+source=("$pkgname-$pkgver::git+https://github.com/THMonster/niri.git#branch=thmonster")
 b2sums=('SKIP')
 
 prepare() {
