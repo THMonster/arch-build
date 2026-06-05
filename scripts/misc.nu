@@ -13,8 +13,8 @@ def download_pkgbuild [pkgname: string] {
 
 # update if true
 def check_verion [pkgname: string , plist: list<string>] {
-	let pkgver = $pkgname + '-' +	(open PKGBUILD | parse -r r#'^\s*pkgver\s*=\s*["']*([^"']+)["']*'# | get capture0.0)
-	let pkgver = $pkgver + '-' + (open PKGBUILD | parse -r r#'^\s*pkgrel\s*=\s*["']*([^"']+)["']*'# | get capture0.0) + '-aaa'
+	let pkgver = $pkgname + '-' +	(open PKGBUILD | lines | parse -r r#'^\s*pkgver\s*=\s*["']*([^"']+)["']*'# | get capture0.0)
+	let pkgver = $pkgver + '-' + (open PKGBUILD | lines | parse -r r#'^\s*pkgrel\s*=\s*["']*([^"']+)["']*'# | get capture0.0) + '-aaa'
 	print ('current pkgver: ' + $pkgver)
 
 	let re1 = $pkgname + r#'-[^-]+-[0-9]+-(any|x86_64).pkg.tar.zst'#
