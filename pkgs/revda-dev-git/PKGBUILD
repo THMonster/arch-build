@@ -1,7 +1,7 @@
 # Maintainer: Megumi_fox <i@megumifox.com>
 
 pkgname=revda-dev-git
-pkgver=5.7.0.r2.g02fdfef
+pkgver=5.7.0.r9.g02fdfef
 pkgrel=3
 pkgdesc='Cute and useful Live Stream Player with danmaku support.'
 arch=('x86_64')
@@ -15,21 +15,16 @@ depends=(
 )
 
 makedepends=(
-	'cmake'
 	'git'
 	'dioxus-cli'
 	'rust'
-	# 'openssl'
-	# 'openssl-1.1'
-	'ninja'
-	'extra-cmake-modules'
+	'just'
 )
 
 options=('!debug' '!lto')
 
 source=(
-    "Revda::git+https://github.com/THMonster/Revda.git#branch=developing"
-    "dmlive::git+https://github.com/THMonster/dmlive.git#branch=dev"
+    "Revda::git+https://github.com/THMonster/Revda.git#branch=dev"
 )
 
 pkgver() {
@@ -39,25 +34,23 @@ pkgver() {
 
 sha256sums=(
     'SKIP'
-    'SKIP'
 )
 
 build() {
-	mv dmlive Revda/
     cd Revda
-	dx build -r
+	# dx build -r
+	just build-revda
 }
 
 package() {
 	_deps+=("dmlive")
 	depends+=("${_deps[@]}")
-	# depends+=( 'dmlive' )
 
     cd Revda
-	install -vDm 755 "target/dx/revda/release/linux/app/revda" -t "$pkgdir/usr/bin/"
-	install -vDm 644 target/dx/revda/release/linux/app/assets/* -t "$pkgdir/usr/lib/revda/assets/"
-	install -vDm 644 "misc/icon/revda.svg" -t "$pkgdir/usr/share/icons/hicolor/scalable/apps"
-	install -vDm 644 "misc/revda.desktop" -t "$pkgdir/usr/share/applications"
-	install -vDm 644 "misc/dmlive-mime.desktop" -t "$pkgdir/usr/share/applications"
-
+	just install-revda -d "$pkgdir/usr"
+	# install -vDm 755 "target/dx/revda/release/linux/app/revda" -t "$pkgdir/usr/bin/"
+	# install -vDm 644 target/dx/revda/release/linux/app/assets/* -t "$pkgdir/usr/lib/revda/assets/"
+	# install -vDm 644 "misc/icon/revda.svg" -t "$pkgdir/usr/share/icons/hicolor/scalable/apps"
+	# install -vDm 644 "misc/revda.desktop" -t "$pkgdir/usr/share/applications"
+	# install -vDm 644 "misc/dmlive-mime.desktop" -t "$pkgdir/usr/share/applications"
 }
