@@ -18,7 +18,7 @@ def main [plist: string, print_pkgs: bool] {
 	# download_pkgbuild $PKGNAME
 
 	# let has_update = check_verion $PKGNAME $plist
-	let has_update = check_verion_git 'https://github.com/THMonster/Revda' 'developing' $PKGNAME $plist
+	let has_update = check_verion_git 'https://github.com/THMonster/Revda' 'dev' $PKGNAME $plist
 	if $has_update {
 		# makepkg -sf --noconfirm --skippgpcheck --skipchecksums
 		paru -B --skipreview --noconfirm .
