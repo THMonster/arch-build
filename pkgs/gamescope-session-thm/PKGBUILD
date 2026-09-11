@@ -1,0 +1,49 @@
+# Maintainer: Joaquín I. Aramendía <samsagax at gmail dot com>
+
+pkgname=gamescope-session-thm
+_gitdir=gamescope-session
+pkgver=r231.127f432
+pkgrel=1
+pkgdesc="Common gamescope session files"
+arch=('any')
+url="https://github.com/THMonster/gamescope-session"
+license=('MIT')
+groups=()
+depends=('gamescope')
+conflicts=('gamescope-session-steam-git' 'gamescope-session-git')
+makedepends=('git')
+optdepends=('mangohud: for performance overlay')
+install=gamescope-session.install
+source=("${_gitdir}::git+https://github.com/THMonster/gamescope-session.git#branch=thm")
+md5sums=('SKIP')
+
+pkgver() {
+	cd "$srcdir/${_gitdir}"
+
+	# Git, no tags available
+	printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short HEAD)"
+}
+
+# build() {
+# 	cd "$srcdir/${_gitdir}"
+# 	git config user.email "a@a.com"
+# 	git config user.name "aaa"
+# 	git fetch https://github.com/THMonster/gamescope-session.git dev:thmonster
+# 	git merge thmonster
+# }
+
+package() {
+	cd "$srcdir/${_gitdir}"
+	install -Dm755 "${srcdir}/${_gitdir}/usr/bin/gamescope-session-thm" -t "${pkgdir}/usr/bin/"
+	install -Dm755 "${srcdir}/${_gitdir}/usr/bin/jupiter-biosupdate" -t "${pkgdir}/usr/bin/"
+	install -Dm755 "${srcdir}/${_gitdir}/usr/bin/steamos-select-branch" -t "${pkgdir}/usr/bin/"
+	install -Dm755 "${srcdir}/${_gitdir}/usr/bin/steamos-session-select" -t "${pkgdir}/usr/bin/"
+	install -Dm755 "${srcdir}/${_gitdir}/usr/bin/steamos-update" -t "${pkgdir}/usr/bin/"
+	install -Dm755 "${srcdir}/${_gitdir}/usr/bin/steamos-polkit-helpers/jupiter-biosupdate" -t "${pkgdir}/usr/bin/steamos-polkit-helpers/"
+	install -Dm755 "${srcdir}/${_gitdir}/usr/bin/steamos-polkit-helpers/steamos-set-timezone" -t "${pkgdir}/usr/bin/steamos-polkit-helpers/"
+	install -Dm755 "${srcdir}/${_gitdir}/usr/bin/steamos-polkit-helpers/steamos-update" -t "${pkgdir}/usr/bin/steamos-polkit-helpers/"
+
+
+	mkdir -p "${pkgdir}/usr/share/fonts/truetype/ttf-dejavu"
+	ln -s "/usr/share/fonts/TTF/DejaVuSans.ttf" "${pkgdir}/usr/share/fonts/truetype/ttf-dejavu/DejaVuSans.ttf"
+}
