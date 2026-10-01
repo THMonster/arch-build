@@ -6,8 +6,8 @@ source '../../scripts/misc.nu'
 const BASEDIR = path self | path dirname
 cd $BASEDIR
 
-let PKGNAME = 'gamescope-session-git'
-let OWN_PKGS = [ 'gamescope-session-git' ]
+let PKGNAME = 'jjui'
+let OWN_PKGS = [ 'jjui' ]
 
 def main [plist: string, print_pkgs: bool] {
 	if $print_pkgs == true {
@@ -15,10 +15,10 @@ def main [plist: string, print_pkgs: bool] {
 	}
 	let plist = $plist | from json
 
-	# download_pkgbuild $PKGNAME
+	download_pkgbuild $PKGNAME
 
-	# let has_update = check_verion $PKGNAME $plist
-	let has_update = check_verion_git 'https://github.com/ChimeraOS/gamescope-session' 'main' $PKGNAME $plist
+	let has_update = check_verion $PKGNAME $plist
+	# let has_update = check_verion_git '<url>' '<br>' $PKGNAME $plist
 	if $has_update {
 		# makepkg -sf --noconfirm --skippgpcheck --skipchecksums
 		paru -B --skipreview --noconfirm .
