@@ -6,8 +6,8 @@ source '../../scripts/misc.nu'
 const BASEDIR = path self | path dirname
 cd $BASEDIR
 
-let PKGNAME = 'limo'
-let OWN_PKGS = [ 'limo' 'limo-docs' ]
+let PKGNAME = 'amethyst-mod-manager'
+let OWN_PKGS = [ 'amethyst-mod-manager' 'python-libloot' 'python-bsdiff4' ]
 
 def main [plist: string, print_pkgs: bool] {
 	if $print_pkgs == true {
@@ -23,5 +23,14 @@ def main [plist: string, print_pkgs: bool] {
 		# makepkg -sf --noconfirm --skippgpcheck --skipchecksums
 		paru -B --skipreview --noconfirm .
 	}
+
+    glob '/**/paru/**/*.pkg.tar.zst' | print
+    let _ = $OWN_PKGS | each { |p|
+        let re1 = '.+/' + $p + r#'-[^-]+-[0-9]+-(any|x86_64).pkg.tar.zst'#
+        glob '/**/paru/**/*.pkg.tar.zst' | where $it =~ $re1 | each { |f|
+            'package file: ' + $f | print
+            try { cp $f ./ }
+        }
+    }
 }
 
