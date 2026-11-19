@@ -35,6 +35,8 @@ def main [] {
         } catch {
             if $pkgout.0 in $expected_packages {
                 error make {msg: "This package should not be failed"}
+            } else {
+                print ("::warning ::build failed: " + $pkgout.0)
             }
         }
 
@@ -43,24 +45,27 @@ def main [] {
             for $f in (glob ($it.name + '/*.pkg.tar.zst') | where $it =~ $re1) {
                 'package file: ' + $f | print
                 let pl = $abandoned | where name =~ $re1 | sort-by created_at
-                $abandoned = $abandoned | where name !~ $re1
                 if ($pl | length) > 1 {
                     $to_delete = $to_delete | append $pl.0 
                 }
                 repo-add THMonster.db.tar.gz $f
                 try { mv $f ./ }
             }
+            $abandoned = $abandoned | where name !~ $re1
         }
         try { rm $it.name -rf }
     }
+
     tree -L 2
-    cp THMonster.db.tar.gz THMonster.db
 
     for $x in $abandoned {
         if (((date now) - ($x.created_at | into datetime)) > 3day) {
             $to_delete = $to_delete | append $x
+            let pname = $x.name | parse -r '(.+)-[^-]+-[0-9]+-(any|x86_64).pkg.tar.zst' | get capture0.0
+            try { repo-remove THMonster.db.tar.gz $pname }
         }
     }
+    cp THMonster.db.tar.gz THMonster.db
 
     '============================all packages==============================' | print
     $resp | print
