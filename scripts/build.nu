@@ -32,5 +32,10 @@ def main [plist: string, print_pkgs: bool] {
     #         try { cp $f ./ }
     #     }
     # }
+
+    # github release will replace ':' to '.' in the filename
+    for p in (ls *.pkg.tar.zst | get name) {
+        try { mv $p ($p | str replace ':' '.') }
+    }
 }
 
