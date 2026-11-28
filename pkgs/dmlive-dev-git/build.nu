@@ -17,8 +17,8 @@ def main [plist: string, print_pkgs: bool] {
 
 	# download_pkgbuild $PKGNAME
 
-	# let has_update = check_verion $PKGNAME $plist
-	let has_update = check_verion_git 'https://github.com/THMonster/dmlive.git' 'dev' $PKGNAME $plist
+	let has_update = check_version $PKGNAME $plist true
+	# let has_update = check_verion_git 'https://github.com/THMonster/dmlive.git' 'dev' $PKGNAME $plist
 	if $has_update {
 		# makepkg -sf --noconfirm --skippgpcheck --skipchecksums
 		paru -B --skipreview --noconfirm .

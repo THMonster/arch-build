@@ -16,9 +16,18 @@ def main [] {
         []
     } 
     let plist = $resp | get name | to json 
-    print $plist
 
     try { wget 'https://github.com/THMonster/arch-build/releases/download/x86_64/THMonster.db' -O 'THMonster.db.tar.gz' }
+
+    let plist = try {
+        tar -xOf ./THMonster.db.tar.gz --wildcards '*/desc'
+        | decode utf-8
+        | parse --regex '(?ms)^%NAME%\n(?P<name>[^\n]+)\n.*?^%VERSION%\n(?P<version>[^\n]+)' 
+    } catch {
+        []
+    }
+    print $plist
+    let plist = $plist | to json
 
 	open /etc/makepkg.conf | str replace -m -r '(^OPTIONS=\([^)]*)debug([^)]*\))' '${1}!debug$2' | save -f /tmp/makepkg.conf
     mv /tmp/makepkg.conf /etc/makepkg.conf

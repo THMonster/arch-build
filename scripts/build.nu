@@ -17,7 +17,7 @@ def main [plist: string, print_pkgs: bool] {
 
 	download_pkgbuild $PKGNAME
 
-	let has_update = check_verion $PKGNAME $plist
+	let has_update = check_version $PKGNAME $plist false
 	# let has_update = check_verion_git '<url>' '<br>' $PKGNAME $plist
 	if $has_update {
 		# makepkg -sf --noconfirm --skippgpcheck --skipchecksums
@@ -34,8 +34,10 @@ def main [plist: string, print_pkgs: bool] {
     # }
 
     # github release will replace ':' to '.' in the filename
-    for p in (ls *.pkg.tar.zst | get name) {
-        try { mv $p ($p | str replace ':' '.') }
+    try {
+        for p in (ls *.pkg.tar.zst | get name) {
+            mv $p ($p | str replace ':' '.')
+        }
     }
 }
 

@@ -17,7 +17,7 @@ def main [plist: string, print_pkgs: bool] {
 
 	download_pkgbuild $PKGNAME
 
-	let has_update = check_verion $PKGNAME $plist
+	let has_update = check_version $PKGNAME $plist false
 	# let has_update = check_verion_git '<url>' '<br>' $PKGNAME $plist
 	if $has_update {
 		# makepkg -sf --noconfirm --skippgpcheck --skipchecksums
